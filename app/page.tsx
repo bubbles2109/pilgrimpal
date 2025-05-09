@@ -1,6 +1,6 @@
-'use client'; 
+'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const Page = () => {
@@ -21,4 +21,12 @@ const Page = () => {
   );
 };
 
-export default Page;
+const SuspensePage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default SuspensePage;
