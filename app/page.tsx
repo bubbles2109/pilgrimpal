@@ -1,14 +1,15 @@
+'use client'; 
+
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 const Page = () => {
-  const router = useRouter();
-  const { deepLink } = router.query;  // lấy deepLink từ query params
+  const searchParams = useSearchParams();
+  const deepLink = searchParams?.get('deepLink');
 
   useEffect(() => {
     if (deepLink) {
-      // Chuyển hướng đến deep link
-      window.location.href = deepLink as string;
+      window.location.href = deepLink;
     }
   }, [deepLink]);
 
