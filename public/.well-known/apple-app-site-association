@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "JYP5N85864.com.pilgrimpal.internal",
+        "paths": ["/start-trip*", "/start-trip/*"]
+      }
+    ]
+  }
+}
