@@ -1,19 +1,23 @@
-'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+const Page = () => {
+  const router = useRouter();
+  const { deepLink } = router.query;  // lấy deepLink từ query params
 
-export default function Page() {
+  useEffect(() => {
+    if (deepLink) {
+      // Chuyển hướng đến deep link
+      window.location.href = deepLink as string;
+    }
+  }, [deepLink]);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ComponentWithSearchParams />
-    </Suspense>
+    <div style={{ textAlign: 'center', marginTop: 100 }}>
+      <h1>Redirecting...</h1>
+      <p>If you are not redirected, <a href={deepLink as string}>click here</a>.</p>
+    </div>
   );
-}
+};
 
-function ComponentWithSearchParams() {
-  const searchParams = useSearchParams();
-  const deepLink = searchParams.get('deepLink');
-
-  return <div>Deep Link: {deepLink}</div>;
-}
+export default Page;
